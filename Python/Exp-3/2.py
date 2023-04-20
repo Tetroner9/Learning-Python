@@ -8,9 +8,12 @@ def fibo(n):
 
 
 terms = int(input("Enter no. of terms: "))
-if terms <= 0:
-    print("Enter positive integer!")
-else:
-    print("Fibonacci series: ")
-    for i in range(terms):
-        print(fibo(i))
+while True:
+    terms = int(input("Enter a positive integer: "))
+    if terms <= 0:
+        print("Invalid input, please enter a positive integer!")
+    else:
+        print("Fibonacci series: ")
+        for i in range(terms):
+            print(fibo(i))
+        break
