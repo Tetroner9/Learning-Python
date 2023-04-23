@@ -1,15 +1,12 @@
-def vowels(str1, vowel, char):
-    newstr = ""
-    for i in range(len(str1)):
-        if str1[i] in vowel:
-            newstr = newstr + char
-        else:
-            newstr = newstr + str1[i]
-    print("New string: ", newstr)
+string = input("Enter a string: ")
 
+vowels = ['A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u']
 
-str1 = input("Enter string: ")
-char = "*"
-vowel = ['A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u']
+modified_string = ''
+for char in string:
+    if char in vowels:
+        modified_string += '*'
+    else:
+        modified_string += char
 
-vowels(str1, vowel, char)
+print("Modified string:", modified_string)

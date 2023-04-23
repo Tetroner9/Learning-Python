@@ -8,48 +8,39 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    def add_node(self, data):
-        new_node = Node(data)
-        if self.head is None:
-            self.head = new_node
-        else:
-            current = self.head
-            while current.next is not None:
-                current = current.next
-            current.next = new_node
+    def push(self, new_data):
+        new_node = Node(new_data)
+        new_node.next = self.head
+        self.head = new_node
+
+    def insert_in_middle(self, prev_node, new_data):
+        if prev_node is None:
+            print("The given previous node must be in the linked list.")
+            return
+
+        new_node = Node(new_data)
+        new_node.next = prev_node.next
+        prev_node.next = new_node
 
     def print_list(self):
-        current = self.head
-        while current is not None:
-            print(current.data, end=' ')
-            current = current.next
-        print()
-
-    def insert_middle(self, data):
-        if self.head is None:
-            self.head = Node(data)
-        else:
-            # Find the middle node using slow and fast pointers
-            slow = self.head
-            fast = self.head
-            while fast is not None and fast.next is not None:
-                fast = fast.next.next
-                slow = slow.next
-
-            # Insert the new node after the middle node
-            new_node = Node(data)
-            new_node.next = slow.next
-            slow.next = new_node
+        temp = self.head
+        while temp:
+            print(temp.data, end=" ")
+            temp = temp.next
 
 
-linked_list = LinkedList()
-linked_list.add_node(1)
-linked_list.add_node(2)
-linked_list.add_node(4)
-linked_list.add_node(5)
+# create a linked list
+llist = LinkedList()
+llist.push(4)
+llist.push(3)
+llist.push(2)
+llist.push(1)
 
-linked_list.print_list()
+print("Original linked list:")
+llist.print_list()
 
-linked_list.insert_middle(3)
+# insert a new node in the middle
+llist.insert_in_middle(llist.head.next, 5)
 
-linked_list.print_list()
+print("\nLinked list after inserting a new node:")
+llist.print_list()

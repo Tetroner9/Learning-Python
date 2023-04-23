@@ -1,24 +1,31 @@
 class Bank:
-    bankbalance = 0
+    bank_balance = 0
+
+    def __init__(self):
+        self.account_name = None
+        self.age = None
+        self.amount = None
 
     def account(self):
         self.account_name = input("Enter name: ")
         self.age = input("Enter age: ")
         self.amount = int(input("Enter amount: "))
-        Bank.bankbalance = Bank.bankbalance + self.amount
+        if self.amount:
+            Bank.bank_balance += self.amount
+            return self.account_name
 
     @classmethod
-    def showbankbal(cls):
-        print("Total Balance: ", cls.bankbalance)
+    def show_bank_balance(cls):
+        print("Total Balance: ", cls.bank_balance)
 
 
 LC = dict()
 
-while True:
-    newAccount = Bank()
-    key = newAccount.account()
-    LC.setdefault(key, newAccount)
-    ch = input("Add More y/n? ")
-    if ch == "n": break
+n = int(input("Enter number of accounts: "))
+for i in range(n):
+    new_account = Bank()
+    key = new_account.account()
+    if key:
+        LC.setdefault(key, new_account)
 
-Bank.showbankbal()
+Bank.show_bank_balance()

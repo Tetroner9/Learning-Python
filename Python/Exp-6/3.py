@@ -1,25 +1,21 @@
-class Num1:
-    def __init__(self):
-        self.num1 = None
-
-    def input1(self):
-        self.num1 = 10
+class Adder:
+    def add(self, x, y):
+        return x + y
 
 
-class Num2:
-    def __init__(self):
-        self.num2 = None
-
-    def input2(self):
-        self.num2 = 2
+class Multiplier:
+    def multiply(self, x, y):
+        return x * y
 
 
-class Result(Num1, Num2):
-    def printresult(self):
-        super().input1()
-        super().input2()
-        print(self.num1 + self.num2)
+class Calculator(Adder, Multiplier):
+    pass
 
 
-r = Result()
-r.printresult()
+calc = Calculator()
+
+num1 = 5
+num2 = 10
+
+print("Sum:", calc.add(num1, num2))
+print("Product:", calc.multiply(num1, num2))

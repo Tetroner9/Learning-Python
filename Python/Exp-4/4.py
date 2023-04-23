@@ -1,7 +1,10 @@
+import string
+
+
 def count_alphabets(filename):
     with open(filename, 'r') as file:
         contents = file.read().lower()
-        alphabet = 'abcdefghijklmnopqrstuvwxyz'
+        alphabet = list(string.ascii_lowercase)
         lettercount = {words: 0 for words in alphabet}
         for char in contents:
             if char in alphabet:

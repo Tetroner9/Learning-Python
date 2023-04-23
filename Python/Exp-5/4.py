@@ -18,14 +18,29 @@ class Student:
         self.it_marks = int(input("Enter I.T marks: "))
         self.chemistry_marks = int(input("Enter Chemistry marks: "))
 
-    def printresult(self):
+    def calculate_percentage(self):
         self.percentage = int(
             (self.math_marks + self.physics_marks + self.cs_marks + self.it_marks + self.chemistry_marks) / 500 * 100)
-        print("Name: ",self.name, "\nRoll No: ", self.roll_no, "\nPercentage:", self.percentage)
+
+    def calculate_grade(self):
+        if self.percentage >= 90:
+            return 'A'
+        elif self.percentage >= 80:
+            return 'B'
+        elif self.percentage >= 70:
+            return 'C'
+        elif self.percentage >= 60:
+            return 'D'
+        else:
+            return 'F'
+
+    def printresult(self):
+        self.calculate_percentage()
+        grade = self.calculate_grade()
+        print(f"\nName: {self.name}\nRoll No: {self.roll_no}\nPercentage: {self.percentage}%\nGrade: {grade}")
 
 
 s1 = Student()
 s1.getstudentdetails()
-print("Result: ")
-
+print("\nResult:")
 s1.printresult()

@@ -1,26 +1,43 @@
 class Person:
     def __init__(self, name, age):
-        self.name = name
-        self.age = age
+        self._name = name
+        self._age = age
 
-    def get_age(self):
+    @property
+    def age(self):
         return self._age
 
-    def set_age(self, age):
+    @age.setter
+    def age(self, age):
         if age < 0 or age > 120:
             raise ValueError("Invalid age")
         self._age = age
 
-    age = property(get_age, set_age)
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        self._name = name
 
 
 person = Person("John", 25)
 
-# Get the age
+# Get the name and age
+print(person.name)
 print(person.age)
 
-# Set the age
+# Set the name and age
+person.name = "Bob"
 person.age = 30
+
+# Get the updated name and age
+print(person.name)
 print(person.age)
 
-person.age = -5
+# Try to set an invalid age
+try:
+    person.age = -5
+except ValueError as e:
+    print(e)

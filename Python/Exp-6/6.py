@@ -17,22 +17,33 @@ class Stack:
         self.head = new_node
 
     def pop(self):
-        if self.head is None:
+        if self.is_empty():
             return None
-        else:
-            popped_node = self.head
-            self.head = self.head.next
-            return popped_node.data
+        temp = self.head
+        self.head = self.head.next
+        popped_item = temp.data
+        del temp
+        return popped_item
 
     def peek(self):
-        if self.head is None:
+        if self.is_empty():
             return None
-        else:
-            return self.head.data
+        return self.head.data
+
+    def display(self):
+        current = self.head
+        while current:
+            print(current.data)
+            current = current.next
 
 
-stack = [1, 2, 3]
+s = Stack()
+s.push(1)
+s.push(2)
+s.push(3)
+s.push(4)
 
-print(stack.pop())  # remove and print the top item (3)
-print(stack.pop())  # remove and print the top item (2)
-print(stack.pop())  # remove and print the top item (1)
+s.display()  # prints 4 3 2 1
+
+print(s.pop())  # prints 4
+print(s.peek())  # prints 3
