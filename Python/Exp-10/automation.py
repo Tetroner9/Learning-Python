@@ -25,7 +25,6 @@ def add_student(database_name, table_name, first_name, last_name, roll_number, a
     conn.close()
 
 
-
 def display_students(database_name, table_name):
     conn = sqlite3.connect(database_name)
     students = conn.execute(f"SELECT * FROM {table_name};").fetchall()
