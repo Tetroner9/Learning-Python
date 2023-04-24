@@ -12,6 +12,3 @@ with open(file_name, 'r') as file:
 
     # Print the list of unique words
     print(sorted_unique_words)
-
-
-
