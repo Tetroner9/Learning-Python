@@ -5,9 +5,9 @@ class Student:
         self.cs_marks = None
         self.physics_marks = None
         self.math_marks = None
+        self.it_marks = None
         self.name = None
         self.roll_no = None
-        self.it_marks = None
 
     def getstudentdetails(self):
         self.name = input("Enter name: ")
@@ -37,7 +37,7 @@ class Student:
     def printresult(self):
         self.calculate_percentage()
         grade = self.calculate_grade()
-        print(f"\nName: {self.name}\nRoll No: {self.roll_no}\nPercentage: {self.percentage}%\nGrade: {grade}")
+        print("Name: ", self.name, "Percentage: ", self.percentage)
 
 
 s1 = Student()

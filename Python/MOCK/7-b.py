@@ -1,17 +1,12 @@
-import string
+def count_words(file_path):
+    """Count the number of words in a text file."""
+    with open(file_path, 'r') as f:
+        text = f.read()
+        words = text.split()
+        return len(words)
 
 
-def count_alphabets(filename):
-    with open(filename, 'r') as file:
-        contents = file.read().lower()
-        alphabet = list(string.ascii_lowercase)
-        lettercount = {words: 0 for words in alphabet}
-        for char in contents:
-            if char in alphabet:
-                lettercount[char] += 1
-        return lettercount
-
-
-alphabet_counts = count_alphabets('input-4.txt')
-for letter, count in alphabet_counts.items():
-    print(f"{letter}: {count}")
+# Example usage
+file_path = 'input-4.txt'
+num_words = count_words(file_path)
+print(num_words)
