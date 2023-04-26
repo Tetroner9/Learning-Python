@@ -1,101 +1,162 @@
-import tkinter as tk
+# Python program to create a simple GUI
+# calculator using Tkinter
 
-class Calculator:
-    def __init__(self):
-        self.total = 0
-        self.current = ""
-        self.new_num = True
-        self.op_pending = False
-        self.op = ""
+# import everything from tkinter module
+from tkinter import *
 
-    def clear(self):
-        self.__init__()
+# globally declare the expression variable
+expression = ""
 
-    def num_press(self, num):
-        if self.new_num:
-            self.current = str(num)
-            self.new_num = False
-        else:
-            self.current += str(num)
-        self.update_display()
 
-    def calc_total(self):
-        if self.op == "+":
-            self.total += float(self.current)
-        elif self.op == "-":
-            self.total -= float(self.current)
-        elif self.op == "*":
-            self.total *= float(self.current)
-        elif self.op == "/":
-            self.total /= float(self.current)
-        self.current = str(self.total)
-        self.update_display()
+# Function to update expression
+# in the text entry box
+def press(num):
+    # point out the global expression variable
+    global expression
 
-    def operation(self, op):
-        if not self.op_pending:
-            if op == "+":
-                self.total = float(self.current)
-            elif op == "-":
-                self.total = float(self.current)
-            elif op == "*":
-                self.total = float(self.current)
-            elif op == "/":
-                self.total = float(self.current)
-            self.new_num = True
-        else:
-            self.calc_total()
-        self.op = op
-        self.op_pending = True
+    # concatenation of string
+    expression = expression + str(num)
 
-    def equals(self):
-        if not self.op_pending:
-            return
-        self.calc_total()
-        self.op_pending = False
+    # update the expression by using set method
+    equation.set(expression)
 
-    def update_display(self):
-        self.display.delete(0, tk.END)
-        self.display.insert(0, self.current)
 
-class CalculatorUI:
-    def __init__(self, master):
-        self.master = master
-        self.calc = Calculator()
+# Function to evaluate the final expression
+def equalpress():
+    # Try and except statement is used
+    # for handling the errors like zero
+    # division error etc.
 
-        # Create the display screen
-        self.display = tk.Entry(master, width=30, font=('Helvetica', 16))
-        self.display.grid(row=0, column=0, columnspan=4, pady=5)
-        self.display.insert(0, "0")
+    # Put that code inside the try block
+    # which may generate the error
+    try:
 
-        # Create the buttons
-        buttons = [
-            ("1", "2", "3", "/"),
-            ("4", "5", "6", "*"),
-            ("7", "8", "9", "-"),
-            ("C", "0", "=", "+")
-        ]
+        global expression
 
-        # Add the buttons to the GUI
-        for row_idx, row in enumerate(buttons):
-            for col_idx, val in enumerate(row):
-                button = tk.Button(master, text=val, width=5, height=2, font=('Helvetica', 12))
-                button.grid(row=row_idx+1, column=col_idx, padx=3, pady=3)
-                if val.isdigit():
-                    button.configure(command=lambda x=val: self.calc.num_press(x))
-                elif val in ["+", "-", "*", "/"]:
-                    button.configure(command=lambda x=val: self.calc.operation(x))
-                elif val == "C":
-                    button.configure(command=lambda: self.clear_display())
-                elif val == "=":
-                    button.configure(command=lambda: self.calc.equals())
+        # eval function evaluate the expression
+        # and str function convert the result
+        # into string
+        total = str(eval(expression))
 
-    def clear_display(self):
-        self.calc.clear()
-        self.display.delete(0, tk.END)
-        self.display.insert(0, "0")
+        equation.set(total)
 
+        # initialize the expression variable
+        # by empty string
+        expression = ""
+
+    # if error is generated then handle
+    # by the except block
+    except:
+
+        equation.set(" error ")
+        expression = ""
+
+
+# Function to clear the contents
+# of text entry box
+def clear():
+    global expression
+    expression = ""
+    equation.set("")
+
+
+# Driver code
 if __name__ == "__main__":
-    root = tk.Tk()
-    root.title("Calculator")
-    calc_gui = CalculatorUI(root)
-    root.mainloop()
+    # create a GUI window
+    gui = Tk()
+
+    # set the background colour of GUI window
+    gui.configure(background="light green")
+
+    # set the title of GUI window
+    gui.title("Simple Calculator")
+
+    # set the configuration of GUI window
+    gui.geometry("270x150")
+
+    # StringVar() is the variable class
+    # we create an instance of this class
+    equation = StringVar()
+
+    # create the text entry box for
+    # showing the expression .
+    expression_field = Entry(gui, textvariable=equation)
+
+    # grid method is used for placing
+    # the widgets at respective positions
+    # in table like structure .
+    expression_field.grid(columnspan=4, ipadx=70)
+
+    # create a Buttons and place at a particular
+    # location inside the root window .
+    # when user press the button, the command or
+    # function affiliated to that button is executed .
+    button1 = Button(gui, text=' 1 ', fg='black', bg='red',
+                     command=lambda: press(1), height=1, width=7)
+    button1.grid(row=2, column=0)
+
+    button2 = Button(gui, text=' 2 ', fg='black', bg='red',
+                     command=lambda: press(2), height=1, width=7)
+    button2.grid(row=2, column=1)
+
+    button3 = Button(gui, text=' 3 ', fg='black', bg='red',
+                     command=lambda: press(3), height=1, width=7)
+    button3.grid(row=2, column=2)
+
+    button4 = Button(gui, text=' 4 ', fg='black', bg='red',
+                     command=lambda: press(4), height=1, width=7)
+    button4.grid(row=3, column=0)
+
+    button5 = Button(gui, text=' 5 ', fg='black', bg='red',
+                     command=lambda: press(5), height=1, width=7)
+    button5.grid(row=3, column=1)
+
+    button6 = Button(gui, text=' 6 ', fg='black', bg='red',
+                     command=lambda: press(6), height=1, width=7)
+    button6.grid(row=3, column=2)
+
+    button7 = Button(gui, text=' 7 ', fg='black', bg='red',
+                     command=lambda: press(7), height=1, width=7)
+    button7.grid(row=4, column=0)
+
+    button8 = Button(gui, text=' 8 ', fg='black', bg='red',
+                     command=lambda: press(8), height=1, width=7)
+    button8.grid(row=4, column=1)
+
+    button9 = Button(gui, text=' 9 ', fg='black', bg='red',
+                     command=lambda: press(9), height=1, width=7)
+    button9.grid(row=4, column=2)
+
+    button0 = Button(gui, text=' 0 ', fg='black', bg='red',
+                     command=lambda: press(0), height=1, width=7)
+    button0.grid(row=5, column=0)
+
+    plus = Button(gui, text=' + ', fg='black', bg='red',
+                  command=lambda: press("+"), height=1, width=7)
+    plus.grid(row=2, column=3)
+
+    minus = Button(gui, text=' - ', fg='black', bg='red',
+                   command=lambda: press("-"), height=1, width=7)
+    minus.grid(row=3, column=3)
+
+    multiply = Button(gui, text=' * ', fg='black', bg='red',
+                      command=lambda: press("*"), height=1, width=7)
+    multiply.grid(row=4, column=3)
+
+    divide = Button(gui, text=' / ', fg='black', bg='red',
+                    command=lambda: press("/"), height=1, width=7)
+    divide.grid(row=5, column=3)
+
+    equal = Button(gui, text=' = ', fg='black', bg='red',
+                   command=equalpress, height=1, width=7)
+    equal.grid(row=5, column=2)
+
+    clear = Button(gui, text='Clear', fg='black', bg='red',
+                   command=clear, height=1, width=7)
+    clear.grid(row=5, column=1)
+
+    Decimal = Button(gui, text='.', fg='black', bg='red',
+                     command=lambda: press('.'), height=1, width=7)
+    Decimal.grid(row=6, column=0)
+    # start the GUI
+    gui.mainloop()

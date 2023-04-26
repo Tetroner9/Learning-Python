@@ -22,3 +22,4 @@ ax.set_xlabel('Pixel intensity')
 ax.set_ylabel('Frequency')
 ax.set_title('Color space histograms')
 plt.show()
+

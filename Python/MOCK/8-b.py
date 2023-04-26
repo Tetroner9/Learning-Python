@@ -4,13 +4,11 @@ import pandas as pd
 # Create a sample dataframe
 data = {'Name': ['John', 'Alice', 'Bob', 'Emily'],
         'Age': [25, 30, 27, 32],
-        'Gender': ['Male', 'Female', 'Male', 'Female'],
-        'Salary': [50000, 60000, 55000, 70000],
-        'Department': ['HR', 'IT', 'Finance', 'Marketing']}
+        'Gender': ['Male', 'Female', 'Male', 'Female']}
 df = pd.DataFrame(data)
 
 # Select specific columns and rows from the dataframe
-selected_df = df.loc[[0, 2], ['Name', 'Age', 'Salary']]
+selected_df = df.loc[[0, 2], ['Name', 'Age']]
 print(selected_df)
 
 # B

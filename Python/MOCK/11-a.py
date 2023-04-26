@@ -12,3 +12,4 @@ plt.xlabel('Intensity Value')
 plt.ylabel('Frequency')
 plt.title('Image Histogram')
 plt.show()
+

@@ -37,7 +37,7 @@ class Student:
     def printresult(self):
         self.calculate_percentage()
         grade = self.calculate_grade()
-        print("Name: ", self.name, "Percentage: ", self.percentage)
+        print("Name: ", self.name, "Percentage: ", self.percentage, "Grade: ", grade)
 
 
 s1 = Student()
