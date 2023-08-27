@@ -9,7 +9,6 @@ Below is made with_query"""
 
 import sqlite3
 
-
 def create_table():
     conn = sqlite3.connect('myclass.db')
     conn.execute('''CREATE TABLE IF NOT EXISTS students

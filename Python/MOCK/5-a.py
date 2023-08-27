@@ -13,14 +13,14 @@ for i in range(num_students):
 # sort the list of students by total marks
 students.sort(key=lambda x: x[1])
 
-# find the second lowest total marks
+# find the second-lowest total marks
 second_lowest_marks = 0
 for i in range(num_students):
     if students[i][1] > students[0][1]:
         second_lowest_marks = students[i][1]
         break
 
-# print the names of students with the second lowest marks
+# print the names of students with the second-lowest marks
 print("Students with the second lowest marks:")
 for student in students:
     if student[1] == second_lowest_marks:
